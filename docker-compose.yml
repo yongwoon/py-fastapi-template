@@ -14,5 +14,47 @@ services:
         target: "/var/www"
     networks:
       - dev_fastapi_template_network
+
+#   db:
+#     image: postgres:16.1-alpine
+#     container_name: dev_fastapi_template_db
+#     ports:
+#       - "5432:5432"
+#     volumes:
+#       - dev_fastapi_template_db_volume:/var/lib/postgresql/data
+#     networks:
+#       - dev_fastapi_template_network
+#     security_opt:
+#       - seccomp:unconfined
+#     environment:
+#       - POSTGRES_USER=admin
+#       - POSTGRES_PASSWORD=postgres
+#     restart: always
+
+#   redis:
+#     image: redis:7.2.4-alpine
+#     container_name: dev_fastapi_template_redis
+#     ports:
+#       - 6379:6379
+#     networks:
+#       - dev_fastapi_template_network
+
+#   fake_gcs:
+#     image: fsouza/fake-gcs-server
+#     container_name: dev_fastapi_template_fake_gcs
+#     # Docker, Docker Composeのcommandで指定したものはDockerfileのENTRYPOINTの実行コマンドの後ろに付け足されるので、
+#     # 実質的に /bin/fake-gcs-server -data /data -scheme http がコンテナ起動時に実行され、デフォルトのHTTPSではなくHTTPプロトコルで起動する。
+#     # https://github.com/fsouza/fake-gcs-server/blob/07e7a87c2a190e8210a1a78cc9a7cd2c8c4e63c4/Dockerfile#L18
+#     # https://github.com/fsouza/fake-gcs-server/blob/07e7a87c2a190e8210a1a78cc9a7cd2c8c4e63c4/internal/config/config.go#L62
+#     command: -scheme http -public-host ${URL:-localhost}:4443
+#     ports:
+#       - "4443:4443"
+#     networks:
+#       - dev_fastapi_template_network
+#     volumes:
+#       - ${PWD}/fake_gcs/data:/data
+
+# volumes:
+#   dev_fastapi_template_db_volume:
 networks:
   dev_fastapi_template_network:
