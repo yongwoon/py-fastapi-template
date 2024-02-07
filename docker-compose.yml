@@ -1,0 +1,16 @@
+version: "3.0"
+
+services:
+  api:
+    container_name: "dev_fastapi_template_api"
+    build: .
+    ports:
+      - 8000:8000
+    volumes:
+      - type: bind
+        source: "./api"
+        target: "/var/www"
+    networks:
+      - dev_fastapi_template_network
+networks:
+  dev_fastapi_template_network:
