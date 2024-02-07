@@ -3,7 +3,9 @@ version: "3.0"
 services:
   api:
     container_name: "dev_fastapi_template_api"
-    build: .
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.dev
     ports:
       - 8000:8000
     volumes:
